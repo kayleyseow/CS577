@@ -1,0 +1,178 @@
+\documentclass[solutionorbox,answers]{exam}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Update to change header
+\newcommand{\courseName}{CS 577}
+\newcommand{\assignmentName}{Assignment 4 -- More Greedy}
+\newcommand{\semester}{Spring 2023}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{tkz-graph}
+\usepackage[ruled]{algorithm2e}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+\usepackage{hyperref}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{\courseName}{\huge \assignmentName}{\semester}
+\runningheader{\courseName}
+{\assignmentName}
+{\semester}
+\firstpagefooter{}{}{}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+
+\begin{document}
+
+\begin{center}
+\fbox{\parbox{5.5in}{\centering
+Answer the questions in the boxes provided on the
+question sheets. If you run out of room for an answer,
+add a page to the end of the document. \\
+\vspace{0.1in}
+}}
+\end{center}
+\vspace{0.1in}
+\makebox[0.48\textwidth]{Name:\enspace\hrulefill} \qquad
+\makebox[0.48\textwidth]{Wisc id:\enspace\hrulefill}
+
+\begin{questions}
+
+\section*{More Greedy Algorithms}
+
+\question \textit{Kleinberg, Jon. Algorithm Design (p. 189, q. 3).}
+
+You are consulting for a trucking company that does a large amount of
+business shipping packages between New York and Boston. The volume is
+high enough that they have to send a number of trucks each day between
+the two locations. Trucks have a fixed limit $W$ on the maximum amount
+of weight they are allowed to carry. Boxes arrive at the New York station
+one by one, and each package $i$ has a weight $w_i$. The trucking station
+is quite small, so at most one truck can be at the station at any time.
+Company policy requires that boxes are shipped in the order they arrive;
+otherwise, a customer might get upset upon seeing a box that arrived
+after his make it to Boston faster. At the moment, the company is using
+a simple greedy algorithm for packing: they pack boxes in the order they
+arrive, and whenever the next box does not fit, they send the truck on its
+way.
+
+Prove that, for a given set of boxes with specified weights, the greedy
+algorithm currently in use actually minimizes the number of trucks that
+are needed. Hint: Use the stay ahead method.
+
+\begin{solutionbox}{\stretch{1}}
+
+\end{solutionbox}
+
+\newpage
+
+\question \textit{Kleinberg, Jon. Algorithm Design (p. 192, q. 8).} Suppose you are given a connected graph $G$ with edge
+costs that are all distinct. Prove that $G$ has a unique minimum spanning tree.
+
+\begin{solutionbox}{\stretch{1}}
+  
+\end{solutionbox}
+
+\newpage
+
+\question \textit{Kleinberg, Jon. Algorithm Design (p. 193, q. 10).} Let $G = (V , E)$ be an (undirected) graph with costs $c_e \ge 0$ on the edges $e \in E$.
+Assume you are given a minimum-cost spanning tree $T$ in $G$. Now assume
+that a new edge is added to $G$, connecting two nodes $v, w \in V$ with cost $c$.
+
+\begin{parts}
+\part Give an efficient ($O(|E|$)) algorithm to test if $T$ remains the minimum-cost
+spanning tree with the new edge added to $G$ (but not to the tree $T$).
+Please note any assumptions you make about what data structure is
+used to represent the tree $T$ and the graph $G$, and prove that its runtime is $O(|E|)$.
+
+\begin{solutionbox}{\stretch{1}}
+  
+\end{solutionbox}
+
+\part Suppose $T$ is no longer the minimum-cost spanning tree. Give a
+linear-time algorithm (time $O(|E|)$) to update the tree $T$ to the new
+minimum-cost spanning tree. Prove that its runtime is $O(|E|)$.
+
+\begin{solutionbox}{\stretch{1}}
+
+  
+  
+\end{solutionbox}
+
+\end{parts}
+
+\newpage
+
+\question
+
+In class, we saw that an optimal greedy strategy for the paging problem was to reject the page the furthest in the future (\textsc{ff}). The paging problem is a classic online problem, meaning that algorithms do not have access to future requests. Consider the following online eviction strategies for the paging problem, and provide counter-examples that show that they are not optimal offline strategies.\footnote{An interesting note is that both of these strategies are $k$-competitive, meaning that they are equivalent under the standard theoretical measure of online algorithms. However, \textsc{fwf} really makes no sense in practice, whereas \textsc{lru} is used in practice.}
+
+\begin{parts}
+  \part \textsc{fwf} is a strategy that, on a page fault, if the cache is full, it evicts all the pages.
+  \begin{solutionbox}{\stretch{1}}
+    
+  \end{solutionbox}
+
+  \part \textsc{lru} is a strategy that, if the cache is full, evicts the least recently used page when there is a page fault.
+
+  \begin{solutionbox}{\stretch{1}}
+    
+  \end{solutionbox}
+
+  
+\end{parts}
+\newpage
+
+\question
+
+\section*{Coding problem}
+For this question you will implement Furthest in the future paging in either C, C++, C\#, Java, or Python.  
+
+The input will start with an positive integer, giving the number of instances that follow. For each instance, the first line will be a positive integer, giving the number of pages in the cache. The second line of the instance will be a positive integer giving the number of page requests.
+The third and final line of each instance will be space delimited positive integers which will be the request sequence.
+
+A sample input is the following:
+\begin{verbatim}
+3
+2
+7
+1 2 3 2 3 1 2
+4
+12
+12 3 33 14 12 20 12 3 14 33 12 20 
+3
+20
+1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5
+
+\end{verbatim}
+The sample input has three instances. The first has a cache which holds 2 pages. It then has a request sequence of 7 pages.
+The second has a cache which holds 4 pages and a request sequence of 12 pages.
+The third has a cache which holds 3 pages and a request sequence of 15 pages.
+
+For each instance, your program should output the number of page faults achieved by furthest in the future paging assuming the cache is initially empty at the start of processing the page request sequence. One output should be given per line. The correct output for the sample input is
+\begin{verbatim}
+4
+6
+12
+
+\end{verbatim}
+
+
+\end{questions}
+
+\end{document}
