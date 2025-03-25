@@ -1,0 +1,173 @@
+\documentclass[solutionorbox,answers]{exam}
+% \documentclass[solutionorbox]{exam}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Update to change header
+\newcommand{\courseName}{CS 577}
+\newcommand{\assignmentName}{Assignment 5 -- Divide and Conquer}
+\newcommand{\semester}{Spring 2023}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage[ruled]{algorithm2e}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{\courseName}{\huge \assignmentName}{\semester}
+\runningheader{\courseName}
+{\assignmentName}
+{\semester}
+\firstpagefooter{}{}{}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+
+\begin{document}
+
+\begin{center}
+\fbox{\parbox{5.5in}{\centering
+Answer the questions in the boxes provided on the
+question sheets. If you run out of room for an answer,
+add a page to the end of the document. \\
+\vspace{0.1in}
+}}
+\end{center}
+\vspace{0.1in}
+\makebox[0.48\textwidth]{Name:\enspace\hrulefill} \qquad
+\makebox[0.48\textwidth]{Wisc id:\enspace\hrulefill}
+
+\begin{questions}
+
+\section*{Divide and Conquer}
+
+  \question \emph{Erickson, Jeff. Algorithms (p.49, q. 6).} Use recursion trees to solve each of the following recurrences.
+
+  \begin{parts}
+
+  \part $C(n) = 2C(n/4)+n^2$; $C(1) = 1$.
+
+\begin{solutionbox}{3.1in} 
+    % your solution here
+\end{solutionbox}
+
+  \part $E(n) = 3E(n/3) + n$; $E(1) = 1$.
+
+\begin{solutionbox}{3.1in}
+\end{solutionbox}
+
+  \end{parts}
+
+\pagebreak
+
+\question \emph{Kleinberg, Jon. Algorithm Design (p. 246, q. 1).} You are interested in analyzing some hard-to-obtain data from two separate databases. Each database contains $n$ numerical values—so there are $2n$ values total—and you may assume that no two values are the same. You’d like to determine the median of this set of $2n$ values, which we will define here to be the $n$th smallest value. 
+
+However, the only way you can access these values is through queries to the databases. In a single query, you can specify a value $k$ to one of the two databases, and the chosen database will return the $k$th smallest value that it contains. Since queries are expensive, you would like to compute the median using as few queries as possible. 
+
+\begin{parts}
+\part Give an algorithm that finds the median value using at most $O(\log n)$ queries.
+
+\begin{solutionbox}{\stretch{3}}
+\end{solutionbox}
+
+\part Give a recurrence for the runtime of your algorithm in part (a), and give an asymptotic solution
+to this recurrence.
+
+\begin{solutionbox}{\stretch{2}}
+\end{solutionbox}
+
+\pagebreak
+
+\part Prove correctness of your algorithm in part (a).
+\begin{solutionbox}{4in}
+\end{solutionbox}
+\end{parts}
+
+
+  \question \textit{Kleinberg, Jon. Algorithm Design (p. 246, q. 2).} Recall the problem of finding the number of inversions. As in the text, we are given a sequence of $n$ numbers $a_1,..., a_n$, which we assume are all distinct, and we define an inversion to be a pair $i < j$ such that $a_i > a_j$. 
+
+  We motivated the problem of counting inversions as a good measure of how different two orderings are. However, this measure is very sensitive. Let’s call a pair a \emph{significant inversion} if $i < j$ and  $a_i > 2a_j$. 
+
+\begin{parts}
+\part
+Give an $O(n \log n)$ algorithm to count the number of significant inversions between two orderings.
+
+\begin{solutionbox}{\stretch{1}}
+\end{solutionbox}
+
+\pagebreak
+
+\part Give a recurrence for the runtime of your algorithm in part (a), and give an asymptotic solution
+to this recurrence.
+\begin{solutionbox}{\stretch{2}}
+\end{solutionbox}
+
+\part Prove correctness of your algorithm in part (a).
+\begin{solutionbox}{\stretch{3}}
+\end{solutionbox}
+
+\end{parts}
+
+\pagebreak
+
+ \question \emph{Kleinberg, Jon. Algorithm Design (p. 246, q. 3).} You’re consulting for a bank that’s concerned about fraud detection. They have a collection of $n$ bank cards that they’ve confiscated, suspecting them of being used in fraud. 
+
+It’s difficult to read the account number off a bank card directly, but the bank has an "equivalence tester" that takes two bank cards and determines whether they correspond to the same account. 
+
+Their question is the following: among the collection of $n$ cards, is there a set of more than $\frac{n}{2}$ of them that all correspond to the same account? Assume that the only feasible operations you can do with the cards are to pick two of them and plug them in to the equivalence tester. 
+
+\begin{parts}
+\part Give an algorithm to decide the answer to their question with only $O(n\log n)$ invocations of  
+the equivalence tester. 
+
+\begin{solutionbox}{\stretch{2}}
+\end{solutionbox}
+
+\part Give a recurrence for the runtime of your algorithm in part (a), and give an asymptotic solution
+to this recurrence.
+\begin{solutionbox}{\stretch{1}}
+\end{solutionbox}
+
+\pagebreak
+
+\part Prove correctness of your algorithm in part (a).
+\begin{solutionbox}{5in}
+\end{solutionbox}
+
+\end{parts}
+
+  \question Implement the optimal algorithm for inversion counting in either C, C++, C\#, Java, Python, or Rust. Be efficient and implement it in $O(n \log n)$ time, where $n$ is the number of elements in the ranking.
+
+The input will start with an positive integer, giving the number of instances that follow. For each
+instance, there will be a positive integer, giving the number of elements in the ranking. 
+A sample input is the following:
+\begin{verbatim}
+2
+5
+5 4 3 2 1
+4
+1 5 9 8
+\end{verbatim}
+
+The sample input has two instances. The first instance has 5 elements and the second has 4.
+For each instance, your program should output the number of inversions on a separate line.
+Each output line should be terminated by a newline. The correct output to the sample input would be:
+
+\begin{verbatim}
+10
+1
+\end{verbatim}
+
+\end{questions}
+
+\end{document}
