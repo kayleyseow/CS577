@@ -1,0 +1,250 @@
+% with answers
+ \documentclass[solutionorbox,answers]{exam}
+% no answers
+% \documentclass[solutionorbox]{exam}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Update to change header
+\newcommand{\courseName}{CS 577}
+\newcommand{\assignmentName}{Assignment 7 -- Dynamic Programming}
+\newcommand{\semester}{Fall 2022}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{tkz-graph}
+\usepackage[ruled]{algorithm2e}
+\usepackage{graphicx}
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+
+\usepackage{hyperref}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{\courseName}{\huge \assignmentName}{\semester}
+\runningheader{\courseName}
+{\assignmentName}
+{\semester}
+\firstpagefooter{}{}{}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+
+\begin{document}
+
+\begin{center}
+\fbox{\parbox{5.5in}{\centering
+Answer the questions in the boxes provided on the
+question sheets. If you run out of room for an answer,
+add a page to the end of the document. \\
+\vspace{0.1in}
+}}
+\end{center}
+\vspace{0.1in}
+\makebox[0.48\textwidth]{Name:\enspace\hrulefill} \qquad
+\makebox[0.48\textwidth]{Wisc id:\enspace\hrulefill}
+
+\section*{Dynamic Programming}
+
+Do \textbf{NOT} write pseudocode when describing your dynamic programs. Rather give the Bellman Equation, describe the matrix, its axis and how to derive the desired solution from it.
+\begin{questions}
+\question \textit{Kleinberg, Jon. Algorithm Design (p.313 q.2).}
+
+Suppose you are managing a consulting team and each week you have to choose one of two jobs for your team to undertake. The two jobs available to you each week are a low-stress job and a high-stress job.
+
+For week $i$, if you choose the low-stress job, you get paid $\ell_i$ dollars and, if you choose the high-stress job, you get paid $h_i$ dollars. The difference with a high-stress job is that you can only schedule a high-stress job in week $i$ if you have no job scheduled in week $i-1$.
+
+Given a sequence of $n$ weeks, determine the schedule of maximum profit. The input is two sequences: $L := \left<\ell_1,\ell_2,\ldots,\ell_n\right>$ and $H := \left<h_1,h_2,\ldots,h_n\right>$ containing the (positive) value of the low and high jobs for each week. For Week 1, assume that you are able to schedule a high-stress job.  
+
+\begin{parts}
+  \part Show that the following algorithm does not correctly solve this problem.
+
+  \renewcommand{\thealgocf}{}
+  \begin{algorithm}[H]
+    \DontPrintSemicolon
+    \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+    \Input{The low ($L$) and high ($H$) stress jobs.} 
+    \Output{The jobs to schedule for the $n$ weeks}
+    \For{Each week $i$}{
+      \uIf{$h_{i+1} > \ell_i + \ell_{i+1}$}{
+        Output "Week i: no job"\;
+        Output "Week i+1: high-stress job"\;
+        Continue with week i+2\;
+      }
+      \Else{
+        Output "Week i: low-stress job"\;
+        Continue with week i+1\;
+      }
+    }
+    \caption{\textsc{JobSequence}}
+  \end{algorithm}
+  
+\begin{solutionbox}{\stretch{1}}
+	
+\end{solutionbox}
+
+\newpage
+\part Give an efficient algorithm that takes in the sequences $L$ and $H$ and outputs the greatest possible profit.
+
+\begin{solutionbox}{\stretch{1}}
+	
+\end{solutionbox}
+
+\part Prove that your algorithm in part (c) is correct.
+
+\begin{solutionbox}{\stretch{2}}
+	
+\end{solutionbox}
+
+\end{parts}
+
+\newpage
+
+\question \textit{Kleinberg, Jon. Algorithm Design (p.315 q.4).}
+
+Suppose you're running a small consulting company. You have clients in New York and clients in San Francisco. Each month you can be physically located in either New York or San Francisco, and the overall operating costs depend on the demands of your clients in a given month.
+
+Given a sequence of $n$ months, determine the work schedule that minimizes the operating costs, knowing that moving between locations from month $i$ to month $i+1$ incurs a fixed moving cost of $M$. The input consists of two sequences $N$ and $S$ consisting of the operating costs when based in New York and San Francisco, respectively. For month $1$, you can start in either city without a moving cost. 
+
+\begin{parts}
+  \part
+  Give an example of an instance where it is optimal to move at least 3 times. Explain where and why the optimal must move.
+  \begin{solutionbox}{\stretch{1}}\\
+	
+  \end{solutionbox}
+
+  \part
+  Show that the following algorithm does not correctly solve this problem.
+
+  \renewcommand{\thealgocf}{}
+  \begin{algorithm}[H]
+    \DontPrintSemicolon
+    \SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+    \Input{The NY ($N$) and SF ($S$) operating costs.} 
+    \Output{The locations to work the $n$ months}
+    \For{Each month $i$}{
+      \uIf{$N_{i} < S_i$}{
+        Output "Month i: NY"\;
+      }
+      \Else{
+        Output "Month i: SF"\;
+      }
+    }
+    \caption{\textsc{WorkLocSeq}}
+  \end{algorithm}
+  
+  \begin{solutionbox}{\stretch{1}}
+  	
+  \end{solutionbox}
+  
+\newpage
+  \part
+  Give an efficient algorithm that takes in the sequences $N$ and $S$ and outputs the value of the optimal solution.
+  \begin{solutionbox}{\stretch{1}}
+  	
+  \end{solutionbox}
+  
+  \part Prove that your algorithm in part (c) is correct.
+  
+  \begin{solutionbox}{\stretch{2}}
+  	
+  \end{solutionbox}
+\end{parts}
+
+\newpage
+
+\question \textit{Kleinberg, Jon. Algorithm Design (p.333, q.26).} 
+
+Consider the following inventory problem. You are running a company that sells trucks and predictions tell you the quantity of sales to expect over the next $n$ months. Let $d_i$ denote the number of sales you expect in month $i$. We'll assume that all sales happen at the beginning of the month, and trucks that are not sold are stored until the beginning of the next month. You can store at most $s$ trucks, and it costs $c$ to store a single truck for a month. You receive shipments of trucks by placing orders for them, and there is a fixed ordering fee $k$ each time you place an order (regardless of the number of trucks you order). You start out with no trucks. The problem is to design an algorithm that decides how to place orders so that you satisfy all the demands $\{d_i\}$, and minimize the costs. In summary:
+\begin{itemize}
+\item There are two parts to the cost: (1) storage cost of $c$ for every truck on hand; and (2) ordering fees of $k$ for every order placed.
+\item In each month, you need enough trucks to satisfy the demand $d_i$, but the number left over after satisfying the demand for the month should not exceed the inventory limit $s$.
+\end{itemize}
+
+\begin{parts}
+	\part Give a recursive algorithm that takes in $s$, $c$, $k$, and the sequence $\{d_i\}$, and outputs the minimum cost. (The algorithm does not need to be efficient.)
+	
+	\begin{solutionbox}{\stretch{1}}
+		
+	\end{solutionbox}
+	
+	\part Give an algorithm in time that is polynomial in $n$ and $s$ for the same problem.
+	
+	\begin{solutionbox}{\stretch{2}}
+		
+	\end{solutionbox}
+	
+	\newpage
+	
+	\part Prove that your algorithm in part (b) is correct.
+	
+	\begin{solutionbox}{\stretch{1}}
+		
+	\end{solutionbox}
+\end{parts}
+
+\newpage
+
+\question Alice and Bob are playing another coin game. This time, there are three stacks of $n$ coins: $A$, $B$, $C$. Starting with Alice, each player takes turns taking a coin from the top of a stack -- they may choose any nonempty stack, but they must only take the top coin in that stack. The coins have different values. From bottom to top, the coins in stack $A$ have values $a_1,\dots, a_n$. Similarly, the coins in stack $B$ have values $b_1,\dots,b_n$, and the coins in stack $C$ have values $c_1,\dots,c_n$. Both players try to play optimally in order to maximize the total value of their coins.
+
+\begin{parts}
+	\part Give an algorithm that takes the sequences $a_1,\dots,a_n$, $b_1,\dots,b_n$, $c_1,\dots,c_n$, and outputs the maximum total value of coins that Alice can take. The runtime should be polynomial in $n$.
+	\begin{solutionbox}{\stretch{1}}
+		
+	\end{solutionbox}
+	
+	\part Prove the correctness of your algorithm in part (a).
+	\begin{solutionbox}{\stretch{1}}
+		
+	\end{solutionbox}
+\end{parts}
+
+\newpage
+
+\question
+
+Implement the optimal algorithm for Weighted Interval Scheduling (for a definition of the problem, see the slides on Canvas) in either C, C++, C\#, Java, Python, or Rust. Be efficient and implement it in $O(n^2)$ time, where $n$ is the number of jobs. We saw this problem previously in HW3 Q2a, where we saw that there was no optimal greedy heuristic.
+
+The input will start with an positive integer, giving the number of instances that follow. For each instance, there will be a positive integer, giving the number of jobs. For each job, there will be a trio of positive integers $i$, $j$ and $k$, where $i < j$, and $i$ is the start time, $j$ is the end time, and $k$ is the weight.
+
+A sample input is the following:
+\begin{verbatim}
+2
+1
+1 4 5
+3
+1 2 1
+3 4 2
+2 6 4
+\end{verbatim}
+The sample input has two instances. The first instance has one job to schedule with a start time of 1, an end time of 4, and a weight of 5. The second instance has 3 jobs.
+
+The objective of the problem is to determine a schedule of non-overlapping intervals with maximum weight and to return this maximum weight. For each instance, your program should output the total weight of the intervals scheduled on a separate line. Each output line should be terminated by exactly one newline. The correct output to the sample input would be:
+\begin{verbatim}
+5
+5
+\end{verbatim}
+or, written with more explicit whitespace,
+\begin{verbatim}
+"5\n5\n"
+\end{verbatim}
+\textbf{Notes:}
+\begin{itemize}
+  \item Endpoints are exclusive, so it is okay to include a job ending at time $t$ and a job starting at time $t$ in the same schedule.
+  \item In the third set of tests, some outputs will cause overflow on 32-bit signed integers.
+\end{itemize}
+
+\end{questions}
+
+\end{document}
