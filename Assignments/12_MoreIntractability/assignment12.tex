@@ -1,0 +1,106 @@
+\documentclass[solutionorbox]{exam} %,answers
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Update to change header
+\newcommand{\courseName}{CS 577}
+\newcommand{\assignmentName}{Assignment 12 -- More Intractability}
+\newcommand{\semester}{Spring 2023}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{tkz-graph}
+\usepackage[ruled]{algorithm2e}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{\courseName}{\huge \assignmentName}{\semester}
+\runningheader{\courseName}
+{\assignmentName}
+{\semester}
+\firstpagefooter{}{}{}
+\runningfooter{}{Page \thepage\ of \numpages}{}
+
+\begin{document}
+
+\begin{center}
+\fbox{\parbox{5.5in}{\centering
+Answer the questions in the boxes provided on the
+question sheets. If you run out of room for an answer,
+add a page to the end of the document. \\
+\vspace{0.1in}
+}}
+\end{center}
+\vspace{0.1in}
+\makebox[0.48\textwidth]{Name:\enspace\hrulefill} \qquad
+\makebox[0.48\textwidth]{Wisc id:\enspace\hrulefill}
+
+
+
+\begin{questions}
+
+\section*{Reductions}
+
+\question
+\emph{Kleinberg, Jon. Algorithm Design (p. 512, q. 14)} 
+We've seen the Interval Scheduling Problem several times now, in different variations. Here we'll consider a computationally much harder version we'll call \emph{Multiple Interval Scheduling}. As before, you have a processor that is available to run jobs over some period of time.
+
+People submit jobs to run on the processor. The processor can only work on one job at any single point in time. Jobs in this model, however, are more complicated than we've seen before. Each job requires a \emph{set} of intervals of time during which it needs to use the processor. For example, a single job could require the processor from 10am to 11am and again from 2pm to 3pm. If you accept the job, it ties up your processor during those two hours, but you could still accept jobs that need time between 11am and 2pm.
+
+You are given a set of $n$ jobs, each specified by a set of time intervals. For a given number $k$, is it possible to accept at least $k$ of the jobs so that no two accepted jobs overlap in time?
+
+Show that Multiple Interval Scheduling is NP-Complete.
+
+\begin{solutionbox}{\stretch{1}}
+\end{solutionbox}
+
+
+
+\newpage
+\question
+\emph{Kleinberg, Jon. Algorithm Design (p. 519, q. 28)} 
+Consider this version of the Independent Set Problem. You are given an undirected graph $G$ and an integer $k$. We will call a set of nodes $I$ ``strongly independent'' if, for any two nodes $v,u\in I$, the edge $(v,u)$ is not present in $G$, and neither is there a path of two edges from $u$ to $v$, that is, there is no node $w$ such that both $(v,w)$ and $(u,w)$ are present in $G$. The Strongly Independent Set problem is to decide whether $G$ has a strongly independent set of size at least $k$.
+
+Show that the Strongly Independent Set Problem is NP-Complete.
+
+\begin{solutionbox}{\stretch{1}}
+\end{solutionbox}
+
+
+
+\newpage
+\question
+\emph{Kleinberg, Jon. Algorithm Design (p. 527, q. 39)} The \emph{Directed Disjoint Paths Problem} is defined as follows: We are given a directed graph $G$ and $k$ pairs of nodes $(s_1,t_1),\ldots,(s_k,t_k)$. The problem is to decide whether there exist node-disjoint paths $P_1,\ldots,P_k$ so that $P_i$ goes from $s_i$ to $t_i$.
+
+Show that Directed Disjoint Paths is NP-Complete.
+
+\begin{solutionbox}{\stretch{1}}
+\end{solutionbox}
+
+\newpage
+\question
+\emph{Kleinberg, Jon. Algorithm Design (p. 508, q. 9)} The \emph{Path Selection Problem} may look initially similar to the problem from the question 3. Pay attention to the differences between them!
+Consider the following situation: You are managing a communications network, modeled by a directed graph $G$. There are $c$ users who are interested in making use of this network. User $i$ issues a ``request'' to reserve a specific path $P_i$ in $G$ on which to transmit data.
+
+You are interested in accepting as many path requests as possible, but if you accept both $P_i$ and $P_j$, the two paths cannot share any nodes.
+
+Thus, the Path Selection Problem asks, given a graph $G$ and a set of requested paths $P_1,\ldots,P_c$ (each of which must be a path in $G$), and given a number $k$, is it possible to select at least $k$ of the paths such that no two paths selected share any nodes?
+
+Show that Path Selection is also NP-Complete.
+
+\begin{solutionbox}{\stretch{1}}
+\end{solutionbox}
+
+
+
+\end{questions}
+
+\end{document}
